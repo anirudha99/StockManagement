@@ -21,20 +21,22 @@ public class StockMain {
 
 	public static void main(String[] args) {
 		System.out.println("------- Welcome to Stock Management -------");
-		List<Stock> list = new ArrayList<>();
+		List<StockAccount> list = new ArrayList<>();
 
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Reader reader = new FileReader("/Users/anirudhasm/Desktop/eclipse-yml_training_workspace/StockManagement/data/stock.json");
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 			JSONArray jsonArray = (JSONArray) jsonObject.get("stock");
+			
 			for (int i = 0; i < jsonArray.size(); i++) {
 				JSONObject obj = (JSONObject) jsonArray.get(i);
 				String name = (String) obj.get("name");
 				long noOfShares = (long) obj.get("no_of_shares");
 				double price = (double) obj.get("price");
+				String stockSymbol = (String) obj.get("stock_symbol");
 
-				Stock stockObj = new Stock(name, price, noOfShares);
+				StockAccount stockObj = new StockAccount(name, price, noOfShares,stockSymbol);
 				list.add(stockObj);
 			}
 			getValue(list);
@@ -49,11 +51,11 @@ public class StockMain {
 
 	}
 
-	private static void getValue(List<Stock> list) {
-		for (Stock stock : list) {
-			double totalValue = stock.noOfShare * stock.price;
-			stock.setTotalValue(totalValue);
-			System.out.println(stock);
+	public static void getValue(List<StockAccount> company) {
+		for (StockAccount stockAccount : company) {
+			double totalValue = stockAccount.noOfShare * stockAccount.price;
+			stockAccount.setTotalValue(totalValue);
+			System.out.println(stockAccount);
 		}
 	}
 }

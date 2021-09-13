@@ -3,10 +3,12 @@
 [
 {"no_of_shares":10000,
 "price":200.0,
-"name":"Apple"},
+"name":"Apple",
+"stock_symbol":"Ap"},
 
 {"no_of_shares":7000,
 "price":150.0,
-"name":"Google"}
+"name":"Google",
+"stock_symbol":"Go"}
 ]
 }
